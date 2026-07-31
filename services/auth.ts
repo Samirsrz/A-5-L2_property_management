@@ -1,6 +1,6 @@
 
 
-export async function loginUser(email: string, password: string) {
+export async function loginUserDB(email: string, password: string) {
   const res = await fetch("http://localhost:5000/api/auth/login", {
     method: "POST",
     headers: {
@@ -42,3 +42,7 @@ export async function registerUser(name: string, email: string, password: string
 
   return data
 }
+
+
+
+

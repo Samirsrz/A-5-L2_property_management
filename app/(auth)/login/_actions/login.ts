@@ -2,7 +2,7 @@
 
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
-import { loginUser } from "@/services/auth"
+import { loginUserDB } from "@/services/auth"
 
 export async function loginAction(formData: FormData) {
   const email = formData.get("email") as string
@@ -10,11 +10,14 @@ export async function loginAction(formData: FormData) {
 
   console.log("loginAction called with:", email)
 
-  const data = await loginUser(email, password)
+  const result = await loginUserDB(email, password)
 
-  console.log("login response:", data)
+  console.log("login response:", result)
+
+  const data = result.data
 
   const cookieStore = await cookies()
+
   cookieStore.set("accessToken", data.accessToken, {
     httpOnly: true,
     sameSite: "lax",
@@ -23,27 +26,33 @@ export async function loginAction(formData: FormData) {
     maxAge:60*60*24
   })
 
-    if (data.refreshToken) {
-    cookieStore.set("refreshToken", data.refreshToken, {
-      httpOnly: true,
-      sameSite: "lax",
-      secure: false,
-      path: "/",
-    })
-  }
-
-  cookieStore.set("role", data.user?.role || "", {
+  cookieStore.set("refreshToken", data.refreshToken, {
     httpOnly: true,
     sameSite: "lax",
     secure: false,
     path: "/",
+    maxAge:60*60*24*7
   })
- 
+
+  cookieStore.set("role", data.user.role, {
+    httpOnly: true,
+    sameSite: "lax",
+    secure: false,
+    path: "/",
+    maxAge:60*60*24
+  })
+ cookieStore.set("name", data.user.name, {
+         httpOnly: true,
+         sameSite: "lax", 
+         secure: false,
+         path: "/" 
+    })
 
 
-  if (data.user?.role === "LANDLORD") {
+    
+  if (data.user.role === "LANDLORD") {
     redirect("/dashboard/landlord")
-  } else if (data.user?.role === "ADMIN") {
+  } else if (data.user.role === "ADMIN") {
     redirect("/dashboard/admin")
   } else {
     redirect("/dashboard/tenant")
