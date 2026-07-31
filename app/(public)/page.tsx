@@ -1,11 +1,18 @@
-import React from 'react';
+import { HeroSection } from './_components/hero-section'
+import { FeaturesSection } from './_components/features-section'
 
-function PublicPage() {
-    return (
-        <div>
-            <h1>THiis is Public Page</h1>
-        </div>
-    );
+import { StatsSection } from './_components/stats-section'
+import { CTASection } from './_components/cta-section'
+import { HowItWorksSection } from './_components/howItworkts'
+
+export default function HomePage() {
+  return (
+    <>
+      <HeroSection />
+      <FeaturesSection />
+      <HowItWorksSection />
+      <StatsSection />
+      <CTASection />
+    </>
+  )
 }
-
-export default PublicPage;

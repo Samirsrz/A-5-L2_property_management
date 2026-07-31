@@ -45,11 +45,12 @@ export async function loginAction(formData: FormData) {
          httpOnly: true,
          sameSite: "lax", 
          secure: false,
-         path: "/" 
+         path: "/" ,
+         maxAge:60*60*24
     })
+cookieStore.set("email", data.user.email, { httpOnly: true, sameSite: "lax", secure: false, path: "/",maxAge:60*60*24 })
 
 
-    
   if (data.user.role === "LANDLORD") {
     redirect("/dashboard/landlord")
   } else if (data.user.role === "ADMIN") {

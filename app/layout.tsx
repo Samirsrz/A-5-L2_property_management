@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 // import { Navbar } from "@/components/navbar"
 import { cn } from "@/lib/utils"
 import { Navbar } from "@/components/navbar"
+import { Footer } from "@/components/footer"
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-sans' })
 
@@ -22,7 +23,8 @@ export default async function RootLayout({
   const cookieStore = await cookies()
   const accessToken = cookieStore.get('accessToken')?.value
   const name = cookieStore.get('name')?.value
-
+  const email = cookieStore.get('email')?.value
+  const role = cookieStore.get('role')?.value
   const isLoggedIn = !!accessToken
   const initials = name ? name.split(' ').map((p) => p[0]).join('').slice(0, 2).toUpperCase() : undefined
 
@@ -34,10 +36,12 @@ export default async function RootLayout({
     >
       <body>
         <ThemeProvider>
-          <Navbar isLoggedIn={isLoggedIn} initials={initials} name={name} />
+          <Navbar isLoggedIn={isLoggedIn} initials={initials} name={name} email={email} role={role} />
           {children}
+          <Footer/>
         </ThemeProvider>
       </body>
+      
     </html>
   )
 }
