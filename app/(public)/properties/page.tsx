@@ -1,5 +1,9 @@
 import { getAllProperties } from "@/services/properties"
 
+import { PropertyCard } from "./_components/property-card"
+import { PropertiesEmptyState } from "./_components/property-empty"
+import { Suspense } from "react"
+import { FilterBar } from "./_components/filter-bar"
 
 
 
@@ -18,6 +22,8 @@ type Property = {
   updatedAt: string
 }
 
+
+
 export default async function PropertiesPage({
   searchParams,
 }: {
@@ -35,15 +41,31 @@ export default async function PropertiesPage({
         <h1 className="text-3xl font-bold text-foreground">Browse Properties</h1>
         <p className="mt-2 text-muted-foreground">{properties?.length || 0} properties available</p>
 
-        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {properties?.map((property) => (
-            <div key={property.id} className="border border-border rounded-lg p-4">
-              <h2 className="font-semibold">{property.title}</h2>
-              <p className="text-sm text-muted-foreground">{property.location}</p>
-              <p className="mt-2 font-bold">${property.price}/mo</p>
-            </div>
-          ))}
+       <div className="mt-6">
+          <Suspense fallback={<div className="h-[88px] rounded-lg border border-border bg-card/50" />}>
+            <FilterBar />
+          </Suspense>
         </div>
+
+        {properties && properties.length > 0 ? (
+          <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {properties.map((property) => (
+              <PropertyCard
+                key={property.id}
+                id={property.id}
+                title={property.title}
+                location={property.location}
+                price={property.price}
+                type={property.type}
+                image={property.images?.[0]}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="mt-8">
+            <PropertiesEmptyState />
+          </div>
+        )}
       </div>
     </div>
   )
