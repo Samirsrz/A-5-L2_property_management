@@ -20,7 +20,26 @@ export async function loginAction(formData: FormData) {
     sameSite: "lax",
     secure: false,
     path: "/",
+    maxAge:60*60*24
   })
+
+    if (data.refreshToken) {
+    cookieStore.set("refreshToken", data.refreshToken, {
+      httpOnly: true,
+      sameSite: "lax",
+      secure: false,
+      path: "/",
+    })
+  }
+
+  cookieStore.set("role", data.user?.role || "", {
+    httpOnly: true,
+    sameSite: "lax",
+    secure: false,
+    path: "/",
+  })
+ 
+
 
   if (data.user?.role === "LANDLORD") {
     redirect("/dashboard/landlord")
