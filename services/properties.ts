@@ -43,3 +43,24 @@ export async function getPropertyById(id: string) {
 
   return data
 }
+
+
+
+export async function getMyProperties(token:string) {
+       const res = await fetch("http://localhost:5000/api/landlord/myproperties",{
+        headers:{
+          "Authorization":`Bearer ${token}`,
+        },
+        cache:"no-store"
+       })
+       
+       const data = await res.json()
+       console.log("My properties response",data);
+
+         if (!res.ok) {
+    throw new Error(data.message || "Failed to fetch properties")
+  }
+
+  return data
+
+      }
