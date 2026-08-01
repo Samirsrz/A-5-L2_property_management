@@ -18,7 +18,10 @@ export async function submitRequestAction(formData: FormData) {
     redirect("/login")
   }
 
-  await createRentalRequest(token, propertyId, startTime, endTime)
+  const startTimeISO = new Date(startTime).toISOString()
+  const endTimeISO = new Date(endTime).toISOString()
+
+  await createRentalRequest(token, propertyId, startTimeISO, endTimeISO)
 
   redirect(`/dashboard/tenant`)
 }

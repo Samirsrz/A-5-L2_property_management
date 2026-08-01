@@ -5,9 +5,30 @@ import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 
-export function HeroSection() {
+
+
+type HeroSectionProps = {
+  isLoggedIn: boolean
+  role?: string
+}
+
+
+
+export function HeroSection({ isLoggedIn, role }: HeroSectionProps) {
+    const secondaryHref = !isLoggedIn
+    ? "/register"
+    : role === "LANDLORD"
+    ? "/dashboard/landlord/properties/new"
+    : "/properties"
+
+  const secondaryLabel = !isLoggedIn
+    ? "List Your Property"
+    : role === "LANDLORD"
+    ? "Add a Property"
+    : "Browse Properties"
+
   return (
-    <section className="relative w-full h-screen overflow-hidden">
+   <section className="relative w-full h-screen overflow-hidden">
       <motion.div
         className="absolute inset-0 z-0"
         initial={{ scale: 1.05 }}
@@ -37,7 +58,9 @@ export function HeroSection() {
         </motion.p>
         <motion.div className="flex flex-col sm:flex-row gap-4" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.9 }}>
           <Button asChild size="lg" className="px-8"><Link href="/properties">Browse Properties</Link></Button>
-          <Button asChild variant="outline" size="lg" className="px-8 border-white text-white hover:bg-white/10"><Link href="/register">List Your Property</Link></Button>
+          <Button asChild variant="outline" size="lg" className="px-8 border-white text-white hover:bg-white/10">
+            <Link href={secondaryHref}>{secondaryLabel}</Link>
+          </Button>
         </motion.div>
       </motion.div>
     </section>
