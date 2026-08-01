@@ -94,9 +94,9 @@ export default async function TenantDashboard() {
                         {rental.status === "APPROVED" && (
                           <p><a href={`/dashboard/tenant/requests/${rental.id}/pay`} className="text-xs text-primary underline block">Pay Now</a></p>
                         )}
-                        {rental.status === "ACTIVE" && (
-                          <p><a href={`/properties/${rental.propertyId}/review`} className="text-xs text-primary underline block">Leave Review</a></p>
-                        )}
+                     {rental.status === "ACTIVE" && (
+                        <p><a href={`/dashboard/tenant/reviews/${rental.id}`} className="text-xs text-primary underline block">Leave Review</a></p>
+                      )}
                       </div>
                     </div>
                   ))}
