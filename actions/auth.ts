@@ -3,6 +3,7 @@
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 
+
 export async function logoutAction() {
   const cookieStore = await cookies()
   cookieStore.delete("accessToken")
@@ -10,5 +11,6 @@ export async function logoutAction() {
   cookieStore.delete("role")
   cookieStore.delete("name")
   console.log("user logged out")
+  
   redirect("/login")
 }

@@ -1,15 +1,36 @@
+'use client'
+
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { loginAction } from './_actions/login';
 
-export const metadata = {
-  title: 'Log in - RentHub',
-  description: 'Log in to your RentHub account',
-};
+
+import { toast } from "sonner"
+import { useRouter } from "next/navigation"
+
+// export const metadata = {
+//   title: 'Log in - RentHub',
+//   description: 'Log in to your RentHub account',
+// };
+
 
 export default function LoginPage() {
+
+  const router = useRouter()
+
+  async function handleLogin(formData: FormData) {
+  const result = await loginAction(formData)
+  if (!result.success) {
+    toast.error(result.message)
+    return
+  }
+  toast.success("Logged in successfully")
+  router.push(result.redirectTo)
+}
+
+
   return (
     <main className="min-h-screen bg-background flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-md">
@@ -23,7 +44,7 @@ export default function LoginPage() {
             </p>
           </div>
 
-          <form className="space-y-6" action={loginAction}>
+          <form className="space-y-6" action={handleLogin}>
             <div className="space-y-2">
               <Label htmlFor="email" className="text-foreground font-medium">
                 Email address

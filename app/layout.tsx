@@ -1,6 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google"
 import { cookies } from "next/headers"
-
+import { Toaster } from "@/components/ui/sonner"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 // import { Navbar } from "@/components/navbar"
@@ -38,6 +38,7 @@ export default async function RootLayout({
         <ThemeProvider>
           <Navbar isLoggedIn={isLoggedIn} initials={initials} name={name} email={email} role={role} />
           {children}
+          <Toaster />
           <Footer/>
         </ThemeProvider>
       </body>

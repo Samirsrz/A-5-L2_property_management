@@ -19,3 +19,23 @@ export async function createRentalRequest(token: string, propertyId: string, sta
 
   return data
 }
+
+
+export async function getMyRentals(token: string) {
+  const res = await fetch("http://localhost:5000/api/rentals", {
+    headers: {
+      "Authorization": `Bearer ${token}`,
+    },
+    cache: "no-store",
+  })
+
+  const data = await res.json()
+
+  console.log("my rentals response:", data)
+
+  if (!res.ok) {
+    throw new Error(data.message || "Failed to fetch rentals")
+  }
+
+  return data
+}
