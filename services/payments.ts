@@ -41,3 +41,21 @@ export async function confirmPayment(token: string, sessionId: string) {
 
   return data
 }
+export async function getMyPayments(token: string) {
+  const res = await fetch("http://localhost:5000/api/payments", {
+    headers: {
+      "Authorization": `Bearer ${token}`,
+    },
+    cache: "no-store",
+  })
+
+  const data = await res.json()
+
+  console.log("my payments response:", data)
+
+  if (!res.ok) {
+    throw new Error(data.message || "Failed to fetch payments")
+  }
+
+  return data
+}
