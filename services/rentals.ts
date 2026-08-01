@@ -39,3 +39,64 @@ export async function getMyRentals(token: string) {
 
   return data
 }
+
+export async function getLandlordRequests(token: string) {
+  const res = await fetch("http://localhost:5000/api/landlord/requests", {
+    headers: {
+      "Authorization": `Bearer ${token}`,
+    },
+    cache: "no-store",
+  })
+
+  const data = await res.json()
+
+  console.log("landlord requests response:", data)
+
+  if (!res.ok) {
+    throw new Error(data.message || "Failed to fetch requests")
+  }
+
+  return data
+}
+
+export async function updateRequestStatus(token: string, requestId: string, status: "APPROVED" | "REJECTED") {
+  const res = await fetch(`http://localhost:5000/api/landlord/requests/${requestId}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`,
+    },
+    body: JSON.stringify({ status }),
+    cache: "no-store",
+  })
+
+  const data = await res.json()
+
+  console.log("update request status response:", data)
+
+  if (!res.ok) {
+    throw new Error(data.message || "Failed to update request")
+  }
+
+  return data
+}
+
+
+export async function getRentalRequestById(token: string, id: string) {
+  const res = await fetch(`http://localhost:5000/api/rentals/${id}`, {
+    headers: {
+      "Authorization": `Bearer ${token}`,
+    },
+    cache: "no-store",
+  })
+
+  const data = await res.json()
+
+  console.log("rental request detail response:", data)
+
+  if (!res.ok) {
+    throw new Error(data.message || "Failed to fetch request")
+  }
+
+  return data
+}

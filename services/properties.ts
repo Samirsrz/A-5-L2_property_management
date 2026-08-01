@@ -64,3 +64,34 @@ export async function getMyProperties(token:string) {
   return data
 
       }
+
+
+export async function createProperty(token: string, propertyData: {
+  title: string
+  description: string
+  location: string
+  price: number
+  type: string
+  amenities: string[]
+  images: string[]
+}) {
+  const res = await fetch("http://localhost:5000/api/landlord/properties", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`,
+    },
+    body: JSON.stringify(propertyData),
+    cache: "no-store",
+  })
+
+  const data = await res.json()
+
+  console.log("create property response:", data)
+
+  if (!res.ok) {
+    throw new Error(data.message || "Failed to create property")
+  }
+
+  return data
+}      

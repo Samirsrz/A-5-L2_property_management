@@ -38,7 +38,7 @@ export default async function RootLayout({
         <ThemeProvider>
           <Navbar isLoggedIn={isLoggedIn} initials={initials} name={name} email={email} role={role} />
           {children}
-          <Toaster />
+          <Toaster position="top-right" />
           <Footer/>
         </ThemeProvider>
       </body>
