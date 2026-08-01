@@ -1,11 +1,19 @@
-import React from 'react';
+import { cookies } from "next/headers"
+import { redirect } from "next/navigation"
+import { createPayment } from "@/services/payments"
 
-const RequestPaymentPage = () => {
-    return (
-        <div>
-            <h1>This is tenant request pay page</h1>
-        </div>
-    );
-};
+export default async function PayPage({
+  params,
+}: {
+  params: Promise<{ id: string }>
+}) {
+  const { id } = await params
+  const cookieStore = await cookies()
+  const token = cookieStore.get("accessToken")?.value as string
 
-export default RequestPaymentPage;
+  const result = await createPayment(token, id)
+
+  console.log("pay page, checkout url:", result.data.checkoutUrl)
+
+  redirect(result.data.checkoutUrl)
+}
