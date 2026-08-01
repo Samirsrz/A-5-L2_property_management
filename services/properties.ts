@@ -18,10 +18,27 @@ export async function getAllProperties(searchParams: { [key: string]: string | u
 
   const data = await res.json()
 
-  console.log("properties response:", data)
+//   console.log("properties response:", data)
 
   if (!res.ok) {
     throw new Error(data.message || "Failed to fetch properties")
+  }
+
+  return data
+}
+
+
+export async function getPropertyById(id: string) {
+  const res = await fetch(`http://localhost:5000/api/landlord/properties/${id}`, {
+    cache: "no-store",
+  })
+
+  const data = await res.json()
+
+//   console.log("property detail response:", data)
+
+  if (!res.ok) {
+    throw new Error(data.message || "Failed to fetch property")
   }
 
   return data

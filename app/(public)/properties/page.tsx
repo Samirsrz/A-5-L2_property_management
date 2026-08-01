@@ -20,8 +20,13 @@ type Property = {
   isAvailable: boolean
   createdAt: string
   updatedAt: string
+  landlord?: {
+    id: string
+    name: string
+    email: string
+    role: string
+  }
 }
-
 
 
 export default async function PropertiesPage({
@@ -33,7 +38,7 @@ export default async function PropertiesPage({
   const result = await getAllProperties(params)
   const properties: Property[] = result.data
 
-  console.log("rendering properties page, count:", properties?.length)
+//   console.log("rendering properties page, count:", properties?.length)
 
   return (
     <div className="min-h-screen pt-8 pb-16">
