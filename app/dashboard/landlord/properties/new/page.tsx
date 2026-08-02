@@ -90,8 +90,9 @@ export default function AddPropertyPage() {
 
             <div className="space-y-2">
               <Label htmlFor="images" className="font-medium">Image URLs</Label>
-              <Input id="images" name="images" type="text" placeholder="https://example.com/image1.jpg, https://example.com/image2.jpg" />
+              <Input id="images" name="images" type="text" placeholder="https://unsplash.com/image1.jpg, https://example.com/image2.jpg" />
               <p className="text-xs text-muted-foreground">Separate multiple URLs with commas (recommended: 3-5 images)</p>
+              <p className="text-red-500 font-extrabold italic">Use only images links from unsplash</p>
             </div>
 
             <Button type="submit" className="w-full" size="lg">

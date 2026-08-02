@@ -125,8 +125,9 @@ export function EditPropertyForm({ property }: { property: Property }) {
 
       <div className="mb-6">
         <label htmlFor="images" className="block text-sm font-medium text-foreground mb-2">Image URLs</label>
-        <Input id="images" name="images" placeholder="e.g. https://example.com/image1.jpg" defaultValue={property.images.join(', ')} className="w-full" />
+        <Input id="images" name="images" placeholder="e.g. https://unsplash.com/image1.jpg" defaultValue={property.images.join(', ')} className="w-full" />
         <p className="text-xs text-muted-foreground mt-1">Comma-separated list of image URLs</p>
+        <p className="text-red-500 font-extrabold italic">Use only images links from unsplash</p>
       </div>
 
       <div className="mb-8 flex items-center gap-4 p-4 bg-muted/40 rounded-lg border border-border">
