@@ -59,3 +59,23 @@ export async function getMyPayments(token: string) {
 
   return data
 }
+
+
+export async function getLandlordEarnings(token: string) {
+  const res = await fetch("http://localhost:5000/api/payments/landlord/earnings", {
+    headers: {
+      "Authorization": `Bearer ${token}`,
+    },
+    cache: "no-store",
+  })
+
+  const data = await res.json()
+
+  console.log("landlord earnings response:", data)
+
+  if (!res.ok) {
+    throw new Error(data.message || "Failed to fetch earnings")
+  }
+
+  return data
+}

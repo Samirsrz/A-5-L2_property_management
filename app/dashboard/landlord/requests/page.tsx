@@ -73,9 +73,7 @@ export default async function LandlordRequestsPage() {
                       <div className="flex items-center gap-3">
                         <Badge className={statusStyles[request.status]}>{request.status}</Badge>
                         {request.status === "PENDING" && (
-                          <div onClick={(e) => e.preventDefault()}>
-                            <RequestActions requestId={request.id} />
-                            </div>
+                          <RequestActions requestId={request.id} />
                         )}
                       </div>
                     </Link>

@@ -21,9 +21,7 @@ export function RequestActions({ requestId }: { requestId: string }) {
   }
 
   return (
- 
-   
-    <div className="flex gap-2">
+    <div className="flex gap-2" onClick={(e) => e.preventDefault()}>
       <Button size="sm" disabled={isPending} onClick={() => handle("APPROVED")}>Approve</Button>
       <Button size="sm" variant="outline" disabled={isPending} onClick={() => handle("REJECTED")}>Reject</Button>
     </div>

@@ -15,17 +15,17 @@ type HeroSectionProps = {
 
 
 export function HeroSection({ isLoggedIn, role }: HeroSectionProps) {
-    const secondaryHref = !isLoggedIn
-    ? "/register"
-    : role === "LANDLORD"
-    ? "/dashboard/landlord/properties/new"
-    : "/properties"
+  const secondaryHref = !isLoggedIn
+  ? "/register"
+  : role === "LANDLORD"
+  ? "/dashboard/landlord/properties/new"
+  : "/dashboard/tenant"
 
-  const secondaryLabel = !isLoggedIn
-    ? "List Your Property"
-    : role === "LANDLORD"
-    ? "Add a Property"
-    : "Browse Properties"
+const secondaryLabel = !isLoggedIn
+  ? "List Your Property"
+  : role === "LANDLORD"
+  ? "Add a Property"
+  : "My Dashboard"
 
   return (
    <section className="relative w-full h-screen overflow-hidden">

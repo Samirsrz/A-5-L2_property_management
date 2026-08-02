@@ -31,6 +31,8 @@ const navByRole = {
     { label: 'Dashboard', href: '/dashboard/landlord', icon: Home },
     { label: 'My Properties', href: '/dashboard/landlord/properties', icon: Building2 },
     { label: 'Requests', href: '/dashboard/landlord/requests', icon: ClipboardList },
+    { label: 'Payments', href: '/dashboard/landlord/payments', icon: CreditCard },
+    { label: 'Profile', href: '/dashboard/landlord/profile', icon: User }
   ],
   ADMIN: [
     { label: 'Dashboard', href: '/dashboard/admin', icon: Home },
