@@ -46,7 +46,7 @@ export default async function AdminRentalsPage() {
   const result = await getAllRentalsAdmin(token)
   const rentals:Rental[] = result.data
 
-  console.log("admin rentals page, count:", rentals?.length)
+//   console.log("admin rentals page, count:", rentals?.length)
 
   const user = {
     name: name || "Admin",

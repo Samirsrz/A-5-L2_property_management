@@ -45,7 +45,7 @@ export default async function PropertyDetailsPage({
   const result = await getPropertyById(id)
   const property: Property = result.data
 
-  console.log("rendering property details for:", property?.title)
+  // console.log("rendering property details for:", property?.title)
 
   const cookieStore = await cookies()
   const isLoggedIn = !!cookieStore.get("accessToken")?.value

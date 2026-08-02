@@ -1,9 +1,9 @@
 
 
 
-
+const API_URL = process.env.NEXT_PUBLIC_API_URL
 export async function createReview(token: string, rentalRequestId: string, rating: number, comment: string) {
-  const res = await fetch("http://localhost:5000/api/reviews", {
+  const res = await fetch(`${API_URL}/api/reviews`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

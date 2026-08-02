@@ -11,14 +11,14 @@ export async function deletePropertyAction(propertyId: string): Promise<
   const cookieStore = await cookies()
   const token = cookieStore.get("accessToken")?.value as string
 
-  console.log("deletePropertyAction called:", propertyId)
+//   console.log("deletePropertyAction called:", propertyId)
 
   try {
     await deleteProperty(token, propertyId)
     revalidatePath("/dashboard/landlord/properties")
     return { success: true }
   } catch (err) {
-    console.error("deletePropertyAction error:", err)
+    // console.error("deletePropertyAction error:", err)
     return { success: false, message: err instanceof Error ? err.message : "Failed to delete property" }
   }
 }

@@ -5,7 +5,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
   const cookieStore = await cookies()
   const accessToken = cookieStore.get("accessToken")?.value
 
-  console.log("dashboard layout check, accessToken present:", !!accessToken)
+  // console.log("dashboard layout check, accessToken present:", !!accessToken)
 
   if (!accessToken) {
     redirect("/login")

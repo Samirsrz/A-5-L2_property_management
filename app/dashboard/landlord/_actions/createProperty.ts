@@ -22,14 +22,14 @@ export async function createPropertyAction(formData: FormData): Promise<
   const cookieStore = await cookies()
   const token = cookieStore.get("accessToken")?.value as string
 
-  console.log("createPropertyAction called:", title, type)
+  // console.log("createPropertyAction called:", title, type)
 
   try {
     await createProperty(token, { title, description, location, price, type, amenities, images })
     revalidatePath("/dashboard/landlord/properties")
     return { success: true }
   } catch (err) {
-    console.error("createPropertyAction error:", err)
+    // console.error("createPropertyAction error:", err)
     return { success: false, message: err instanceof Error ? err.message : "Failed to create property" }
   }
 }

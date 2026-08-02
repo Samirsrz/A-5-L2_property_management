@@ -1,5 +1,7 @@
+const API_URL = process.env.NEXT_PUBLIC_API_URL
+
 export async function createPayment(token: string, rentalRequestId: string) {
-  const res = await fetch("http://localhost:5000/api/payments/create", {
+  const res = await fetch(`${API_URL}/api/payments/create`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -21,7 +23,7 @@ export async function createPayment(token: string, rentalRequestId: string) {
 }
 
 export async function confirmPayment(token: string, sessionId: string) {
-  const res = await fetch("http://localhost:5000/api/payments/confirm", {
+  const res = await fetch(`${API_URL}/api/payments/confirm`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -42,7 +44,7 @@ export async function confirmPayment(token: string, sessionId: string) {
   return data
 }
 export async function getMyPayments(token: string) {
-  const res = await fetch("http://localhost:5000/api/payments", {
+  const res = await fetch(`${API_URL}/api/payments`, {
     headers: {
       "Authorization": `Bearer ${token}`,
     },
@@ -51,7 +53,7 @@ export async function getMyPayments(token: string) {
 
   const data = await res.json()
 
-  console.log("my payments response:", data)
+  // console.log("my payments response:", data)
 
   if (!res.ok) {
     throw new Error(data.message || "Failed to fetch payments")
@@ -62,7 +64,7 @@ export async function getMyPayments(token: string) {
 
 
 export async function getLandlordEarnings(token: string) {
-  const res = await fetch("http://localhost:5000/api/payments/landlord/earnings", {
+  const res = await fetch(`${API_URL}/api/payments/landlord/earnings`, {
     headers: {
       "Authorization": `Bearer ${token}`,
     },

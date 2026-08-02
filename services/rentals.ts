@@ -1,5 +1,12 @@
+
+
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL
+
+
+
 export async function createRentalRequest(token: string, propertyId: string, startTime: string, endTime: string) {
-  const res = await fetch("http://localhost:5000/api/rentals", {
+  const res = await fetch(`${API_URL}/api/rentals`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -22,7 +29,7 @@ export async function createRentalRequest(token: string, propertyId: string, sta
 
 
 export async function getMyRentals(token: string) {
-  const res = await fetch("http://localhost:5000/api/rentals", {
+  const res = await fetch(`${API_URL}/api/rentals`, {
     headers: {
       "Authorization": `Bearer ${token}`,
     },
@@ -41,7 +48,7 @@ export async function getMyRentals(token: string) {
 }
 
 export async function getLandlordRequests(token: string) {
-  const res = await fetch("http://localhost:5000/api/landlord/requests", {
+  const res = await fetch(`${API_URL}/api/landlord/requests`, {
     headers: {
       "Authorization": `Bearer ${token}`,
     },
@@ -60,7 +67,7 @@ export async function getLandlordRequests(token: string) {
 }
 
 export async function updateRequestStatus(token: string, requestId: string, status: "APPROVED" | "REJECTED") {
-  const res = await fetch(`http://localhost:5000/api/landlord/requests/${requestId}`, {
+  const res = await fetch(`${API_URL}/api/landlord/requests/${requestId}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -83,7 +90,7 @@ export async function updateRequestStatus(token: string, requestId: string, stat
 
 
 export async function getRentalRequestById(token: string, id: string) {
-  const res = await fetch(`http://localhost:5000/api/rentals/${id}`, {
+  const res = await fetch(`${API_URL}/api/rentals/${id}`, {
     headers: {
       "Authorization": `Bearer ${token}`,
     },

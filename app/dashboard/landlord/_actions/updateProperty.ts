@@ -23,7 +23,7 @@ export async function updatePropertyAction(propertyId: string, formData: FormDat
   const cookieStore = await cookies()
   const token = cookieStore.get("accessToken")?.value as string
 
-  console.log("updatePropertyAction called:", propertyId, title)
+//   console.log("updatePropertyAction called:", propertyId, title)
 
   try {
     await updateProperty(token, propertyId, { title, description, location, price, type, amenities, images, isAvailable })

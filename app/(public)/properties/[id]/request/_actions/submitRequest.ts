@@ -12,7 +12,7 @@ export async function submitRequestAction(formData: FormData) {
   const cookieStore = await cookies()
   const token = cookieStore.get("accessToken")?.value
 
-  console.log("submitRequestAction called for property:", propertyId)
+  // console.log("submitRequestAction called for property:", propertyId)
 
   if (!token) {
     redirect("/login")

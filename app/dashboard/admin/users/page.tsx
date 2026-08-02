@@ -26,7 +26,7 @@ export default async function AdminUsersPage() {
   const result = await getAllUsers(token)
   const users:User[] = result.data
 
-  console.log("admin users page, count:", users?.length)
+//   console.log("admin users page, count:", users?.length)
 
   const user = {
     name: name || "Admin",

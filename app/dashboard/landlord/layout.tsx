@@ -5,7 +5,7 @@ export default async function LandlordLayout({ children }: { children: React.Rea
   const cookieStore = await cookies()
   const role = cookieStore.get("role")?.value
 
-  console.log("LANDLORD  layout check, role:", role)
+  // console.log("LANDLORD  layout check, role:", role)
 
   if (role !== "LANDLORD") {
     redirect("/login")

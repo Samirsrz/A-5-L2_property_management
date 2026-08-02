@@ -5,7 +5,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   const cookieStore = await cookies()
   const role = cookieStore.get("role")?.value
 
-  console.log("ADMIN layout check, role:", role)
+  // console.log("ADMIN layout check, role:", role)
 
   if (role !== "ADMIN") {
     redirect("/login")

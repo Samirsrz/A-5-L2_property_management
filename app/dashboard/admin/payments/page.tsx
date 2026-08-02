@@ -39,7 +39,7 @@ export default async function AdminPaymentsPage() {
   const result = await getAllPaymentsAdmin(token)
   const payments: AdminPayment[] = result.data
 
-  console.log("admin payments page, count:", payments?.length)
+//   console.log("admin payments page, count:", payments?.length)
 
   const user = {
     name: name || "Admin",

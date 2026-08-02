@@ -43,7 +43,7 @@ export default async function AdminDashboard() {
   const properties = propertiesResult.data
   const rentals:Rental[] = rentalsResult.data
 
-  console.log("admin dashboard, counts:", users?.length, properties?.length, rentals?.length)
+//   console.log("admin dashboard, counts:", users?.length, properties?.length, rentals?.length)
 
   const pendingCount = rentals?.filter((r) => r.status === "PENDING").length || 0
 

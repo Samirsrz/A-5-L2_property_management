@@ -10,7 +10,7 @@ export async function logoutAction() {
   cookieStore.delete("refreshToken")
   cookieStore.delete("role")
   cookieStore.delete("name")
-  console.log("user logged out")
+  // console.log("user logged out")
   
   redirect("/login")
 }

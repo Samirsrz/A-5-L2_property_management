@@ -1,5 +1,7 @@
+const API_URL = process.env.NEXT_PUBLIC_API_URL
+
 export async function getAllUsers(token: string) {
-  const res = await fetch("http://localhost:5000/api/admin/users", {
+  const res = await fetch(`${API_URL}/api/admin/users`, {
     headers: {
       "Authorization": `Bearer ${token}`,
     },
@@ -18,7 +20,7 @@ export async function getAllUsers(token: string) {
 }
 
 export async function getAllPropertiesAdmin(token: string) {
-  const res = await fetch("http://localhost:5000/api/admin/properties", {
+  const res = await fetch(`${API_URL}/api/admin/properties`, {
     headers: {
       "Authorization": `Bearer ${token}`,
     },
@@ -37,7 +39,7 @@ export async function getAllPropertiesAdmin(token: string) {
 }
 
 export async function getAllRentalsAdmin(token: string) {
-  const res = await fetch("http://localhost:5000/api/admin/rentals", {
+  const res = await fetch(`${API_URL}/api/admin/rentals`, {
     headers: {
       "Authorization": `Bearer ${token}`,
     },
@@ -56,7 +58,7 @@ export async function getAllRentalsAdmin(token: string) {
 }
 
 export async function updateUserStatus(token: string, userId: string, status: "ACTIVE" | "BANNED") {
-  const res = await fetch(`http://localhost:5000/api/admin/users/${userId}`, {
+  const res = await fetch(`${API_URL}/api/admin/users/${userId}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -79,7 +81,7 @@ export async function updateUserStatus(token: string, userId: string, status: "A
 
 
 export async function getAllPaymentsAdmin(token: string) {
-  const res = await fetch("http://localhost:5000/api/admin/payments", {
+  const res = await fetch(`${API_URL}/api/admin/payments`, {
     headers: {
       "Authorization": `Bearer ${token}`,
     },

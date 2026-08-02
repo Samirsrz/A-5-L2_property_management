@@ -36,7 +36,7 @@ export default async function LandlordDashboard() {
   const result = await getMyProperties(token)
   const properties: Property[] = result.data
 
-  console.log("landlord dashboard, properties count:", properties?.length)
+  // console.log("landlord dashboard, properties count:", properties?.length)
 
   const totalRequests = properties?.reduce(
     (sum, p) => sum + (p.rentalRequests?.length || 0),

@@ -11,7 +11,7 @@ export async function registerAction(formData:FormData) {
     const role = formData.get("role") as string
 
 
- console.log("registerAction called with:", email, role)
+//  console.log("registerAction called with:", email, role)
 
   await registerUser(name, email, password, role)
 

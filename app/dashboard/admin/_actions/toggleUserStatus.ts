@@ -12,14 +12,14 @@ export async function toggleUserStatusAction(userId: string, currentStatus: stri
   const token = cookieStore.get("accessToken")?.value as string
   const newStatus = currentStatus === "ACTIVE" ? "BANNED" : "ACTIVE"
 
-  console.log("toggleUserStatusAction called:", userId, "→", newStatus)
+//   console.log("toggleUserStatusAction called:", userId, "→", newStatus)
 
   try {
     await updateUserStatus(token, userId, newStatus)
     revalidatePath("/dashboard/admin/users")
     return { success: true }
   } catch (err) {
-    console.error("toggleUserStatusAction error:", err)
+    // console.error("toggleUserStatusAction error:", err)
     return { success: false, message: err instanceof Error ? err.message : "Failed to update user" }
   }
 }

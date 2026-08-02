@@ -1,6 +1,4 @@
-
-
-
+const API_URL = process.env.NEXT_PUBLIC_API_URL
 
 export async function getAllProperties(searchParams: { [key: string]: string | undefined }) {
   const params = new URLSearchParams()
@@ -12,7 +10,7 @@ export async function getAllProperties(searchParams: { [key: string]: string | u
   if (searchParams.sortBy) params.set("sortBy", searchParams.sortBy)
   if (searchParams.sortOrder) params.set("sortOrder", searchParams.sortOrder)
 
-  const res = await fetch(`http://localhost:5000/api/landlord/properties?${params.toString()}`, {
+  const res = await fetch(`${API_URL}/api/landlord/properties?${params.toString()}`, {
     cache: "no-store",
   })
 
@@ -29,7 +27,7 @@ export async function getAllProperties(searchParams: { [key: string]: string | u
 
 
 export async function getPropertyById(id: string) {
-  const res = await fetch(`http://localhost:5000/api/landlord/properties/${id}`, {
+  const res = await fetch(`${API_URL}/api/landlord/properties/${id}`, {
     cache: "no-store",
   })
 
@@ -47,7 +45,7 @@ export async function getPropertyById(id: string) {
 
 
 export async function getMyProperties(token:string) {
-       const res = await fetch("http://localhost:5000/api/landlord/myproperties",{
+       const res = await fetch(`${API_URL}/api/landlord/myproperties`,{
         headers:{
           "Authorization":`Bearer ${token}`,
         },
@@ -75,7 +73,7 @@ export async function createProperty(token: string, propertyData: {
   amenities: string[]
   images: string[]
 }) {
-  const res = await fetch("http://localhost:5000/api/landlord/properties", {
+  const res = await fetch(`${API_URL}/api/landlord/properties`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -108,7 +106,7 @@ export async function updateProperty(token: string, propertyId: string, property
   images: string[]
   isAvailable: boolean
 }) {
-  const res = await fetch(`http://localhost:5000/api/landlord/properties/${propertyId}`, {
+  const res = await fetch(`${API_URL}/api/landlord/properties/${propertyId}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -130,7 +128,7 @@ export async function updateProperty(token: string, propertyId: string, property
 }
 
 export async function deleteProperty(token: string, propertyId: string) {
-  const res = await fetch(`http://localhost:5000/api/landlord/properties/${propertyId}`, {
+  const res = await fetch(`${API_URL}/api/landlord/properties/${propertyId}`, {
     method: "DELETE",
     headers: {
       "Authorization": `Bearer ${token}`,

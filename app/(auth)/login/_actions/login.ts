@@ -30,7 +30,7 @@ export async function loginAction(formData: FormData): Promise<
 
     return { success: true, redirectTo }
   } catch (err) {
-    console.error("loginAction error:", err)
+    // console.error("loginAction error:", err)
     return { success: false, message: err instanceof Error ? err.message : "Login failed" }
   }
 }

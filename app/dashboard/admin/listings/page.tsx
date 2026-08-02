@@ -35,7 +35,7 @@ export default async function AdminListingsPage() {
   const result = await getAllPropertiesAdmin(token)
   const properties:Property[] = result.data
 
-  console.log("admin listings page, count:", properties?.length)
+//   console.log("admin listings page, count:", properties?.length)
 
   const user = {
     name: name || "Admin",
