@@ -95,3 +95,56 @@ export async function createProperty(token: string, propertyData: {
 
   return data
 }      
+
+
+
+export async function updateProperty(token: string, propertyId: string, propertyData: {
+  title: string
+  description: string
+  location: string
+  price: number
+  type: string
+  amenities: string[]
+  images: string[]
+  isAvailable: boolean
+}) {
+  const res = await fetch(`http://localhost:5000/api/landlord/properties/${propertyId}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`,
+    },
+    body: JSON.stringify(propertyData),
+    cache: "no-store",
+  })
+
+  const data = await res.json()
+
+  console.log("update property response:", data)
+
+  if (!res.ok) {
+    throw new Error(data.message || "Failed to update property")
+  }
+
+  return data
+}
+
+export async function deleteProperty(token: string, propertyId: string) {
+  const res = await fetch(`http://localhost:5000/api/landlord/properties/${propertyId}`, {
+    method: "DELETE",
+    headers: {
+      "Authorization": `Bearer ${token}`,
+    },
+    cache: "no-store",  
+  })
+
+  const data = await res.json()
+
+  console.log("delete property response:", data)
+
+  if (!res.ok) {
+    throw new Error(data.message || "Failed to delete property")
+  }
+
+  return data
+}

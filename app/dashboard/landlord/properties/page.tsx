@@ -7,6 +7,8 @@ import { DashboardSidebar } from "@/components/dashboard-sidebar"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { DeletePropertyDialog } from "../_components/deletePropertyButton"
+
 
 type Property = {
   id: string
@@ -77,6 +79,7 @@ export default async function LandlordPropertiesPage() {
                       <Button size="sm" variant="outline" asChild>
                         <Link href={`/dashboard/landlord/properties/${property.id}/edit`}>Edit</Link>
                       </Button>
+                      <DeletePropertyDialog propertyId={property.id} />
                     </div>
                   </CardContent>
                 </Card>
