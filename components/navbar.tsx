@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Menu, ChevronDown, LayoutDashboard, LogOut } from 'lucide-react'
+import { Menu, ChevronDown, LayoutDashboard, LogOut, Home } from 'lucide-react'
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
@@ -16,6 +16,7 @@ import {
   DropdownMenuSeparator,
 } from '@/components/ui/dropdown-menu'
 import { logoutAction } from '@/actions/auth'
+import Image from 'next/image'
 
 type NavbarProps = {
   isLoggedIn: boolean
@@ -29,7 +30,12 @@ export function Navbar({ isLoggedIn, initials, name, email, role }: NavbarProps)
   const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(false)
   const isActive = (path: string) => pathname === path
-  const navLinks = [{ label: 'Browse Properties', href: '/properties' }]
+  const navLinks = [
+    { label: 'Home', href: '/' },
+    { label: 'Browse Properties', href: '/properties' },
+    { label: 'About', href: '/about' },
+    { label: 'Contact', href: '/contact' },
+  ]
 
   const dashboardHref =
     role === 'LANDLORD' ? '/dashboard/landlord'
@@ -39,20 +45,20 @@ export function Navbar({ isLoggedIn, initials, name, email, role }: NavbarProps)
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur-lg">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center gap-2.5 font-bold text-lg text-primary transition-colors hover:text-primary/90">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/15">
-            <span className="text-primary font-bold text-sm">R</span>
-          </div>
-          <span className="tracking-tight">RentHub</span>
-        </Link>
+      <Link href="/" className="flex items-center gap-2.5 font-bold text-lg text-primary transition-colors hover:text-primary/90">
+  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/15 overflow-hidden">
+    <Image src="/favicon.ico" alt="RentHub logo" width={20} height={20} />
+  </div>
+  <span className="tracking-tight">RentHub</span>
+</Link>
 
-        {/* <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <Link key={link.href} href={link.href} className={`transition-colors text-sm font-medium tracking-wide ${isActive(link.href) ? 'text-primary' : 'text-muted-foreground hover:text-foreground'}`}>
               {link.label}
             </Link>
           ))}
-        </div> */}
+        </div>
 
         <div className="hidden md:flex items-center gap-3">
           {!isLoggedIn ? (
