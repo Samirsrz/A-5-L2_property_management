@@ -76,3 +76,23 @@ export async function updateUserStatus(token: string, userId: string, status: "A
 
   return data
 }
+
+
+export async function getAllPaymentsAdmin(token: string) {
+  const res = await fetch("http://localhost:5000/api/admin/payments", {
+    headers: {
+      "Authorization": `Bearer ${token}`,
+    },
+    cache: "no-store",
+  })
+
+  const data = await res.json()
+
+  console.log("admin payments response:", data)
+
+  if (!res.ok) {
+    throw new Error(data.message || "Failed to fetch payments")
+  }
+
+  return data
+}

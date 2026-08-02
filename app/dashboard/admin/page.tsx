@@ -4,6 +4,30 @@ import { logoutAction } from "@/actions/auth"
 import { DashboardSidebar } from "@/components/dashboard-sidebar"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
+
+
+export type Rental = {
+  id: string
+  tenantId: string
+  propertyId: string
+  status: "PENDING" | "APPROVED" | "REJECTED" | "ACTIVE" | "COMPLETED" | "CANCELLED"
+  startTime: string
+  endTime: string
+  createdAt: string
+  updatedAt: string
+  property?: {
+    id: string
+    title: string
+    location: string | null
+    price: string
+  }
+  tenant?: {
+    id: string
+    name: string
+    email: string
+  }
+}
+
 export default async function AdminDashboard() {
   const cookieStore = await cookies()
   const token = cookieStore.get("accessToken")?.value as string
@@ -17,11 +41,11 @@ export default async function AdminDashboard() {
 
   const users = usersResult.data
   const properties = propertiesResult.data
-  const rentals = rentalsResult.data
+  const rentals:Rental[] = rentalsResult.data
 
   console.log("admin dashboard, counts:", users?.length, properties?.length, rentals?.length)
 
-  const pendingCount = rentals?.filter((r: any) => r.status === "PENDING").length || 0
+  const pendingCount = rentals?.filter((r) => r.status === "PENDING").length || 0
 
   const user = {
     name: name || "Admin",

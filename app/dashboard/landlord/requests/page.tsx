@@ -26,6 +26,11 @@ type Rental = {
     location: string | null
     price: string
   }
+  tenant?: {
+    id: string
+    name: string
+    email: string
+  }
 }
 const statusStyles: Record<string, string> = {
   PENDING: "bg-yellow-100 text-yellow-800 hover:bg-yellow-100",
@@ -64,7 +69,7 @@ export default async function LandlordRequestsPage() {
             <CardContent>
               {requests?.length > 0 ? (
                 <div className="space-y-4">
-                  {requests.map((request: any) => (
+                  {requests.map((request) => (
                     <Link href={`/dashboard/landlord/requests/${request.id}`} key={request.id} className="flex items-center justify-between border-b pb-4 last:border-0 hover:bg-muted/50 rounded px-2 -mx-2 transition-colors">
                       <div>
                         <p className="font-medium text-sm">{request.property?.title}</p>

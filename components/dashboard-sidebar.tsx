@@ -38,6 +38,8 @@ const navByRole = {
     { label: 'Dashboard', href: '/dashboard/admin', icon: Home },
     { label: 'Users', href: '/dashboard/admin/users', icon: Users },
     { label: 'Listings', href: '/dashboard/admin/listings', icon: Building2 },
+    { label: 'Rentals', href: '/dashboard/admin/rentals', icon: ClipboardList },
+      { label: 'Payments', href: '/dashboard/admin/payments', icon: CreditCard },
   ],
 }
 

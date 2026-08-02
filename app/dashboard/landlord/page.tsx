@@ -23,6 +23,10 @@ type Property = {
     email: string
     role: string
   }
+  rentalRequests?: {
+    id: string
+    status: string
+  }[]
 }
 export default async function LandlordDashboard() {
   const cookieStore = await cookies()
@@ -35,7 +39,7 @@ export default async function LandlordDashboard() {
   console.log("landlord dashboard, properties count:", properties?.length)
 
   const totalRequests = properties?.reduce(
-    (sum, p: any) => sum + (p.rentalRequests?.length || 0),
+    (sum, p) => sum + (p.rentalRequests?.length || 0),
     0
   ) || 0
 
